@@ -1,57 +1,99 @@
 import java.util.Scanner;
+
 public class RoshamboApp {
 
 	public static void main(String[] args) {
 		// Declare/ initialize variables.
 		Scanner sc = new Scanner(System.in);
 		Player user = new Human();
-		Player opponent;
-		Roshambo opponentValue;
+		Player opponent = null;
+		Roshambo opponentValue = null;
+		Roshambo userValue;
 		String userName;
-		
+		boolean contin = true;
+
 		// Prompt user/player to enter name. Validate input.
 		System.out.println("Welcome to Rock, Paper, Scissors!");
 		userName = Validator.getString(sc, "\nPlease enter your name: ");
 		user.setName(userName);
-		
-		// Prompt user/player to select opponent. Validate input.
-		String userOpChoice = Validator.getString(sc, "\nHello, " + userName + ". " + "Please pick an opponent: The Sloppys or The Joes (s/j)");
-		
-					
-		if (userOpChoice.equalsIgnoreCase("s")) {
-			opponent = new RockPlayer();
-			//break;
-		}
-		
-		else if (userOpChoice.equalsIgnoreCase("j")) {
-			opponent = new SelectsRndm();
-			}
-		
-		else {
-		System.out.println("\nInvalid input. Please pick an opponent: The Sloppys or The Joes (s/j)");
-		sc.nextLine();
-		}
-		
-		// Prompt user/player to select rock, paper, or scissors. Validate input. Display user/player's choice.
-		String userWpChoice = Validator.getString(sc, "\nChoose your weapon: Rock, Paper, or Scissors? (R/P/S)");
-		
-		if (userWpChoice.equalsIgnoreCase("R")) {
-			System.out.println("You chose: Rock");
-			
-		if (userWpChoice.equalsIgnoreCase("P")) {
-				System.out.println("You chose: Paper");
+
+		System.out.println();
+			// Prompt user/player to select opponent. Validate input.
+			System.out.println("Hello, " + userName + ".");
+						
+			while (contin) {
+				String userOpChoice = Validator.getString(sc, "\nPlease pick an opponent: The Sloppys or The Joes (s/j)\n");
+				//System.out.println();
+
 				
-		if (userWpChoice.equalsIgnoreCase("S")) {
-					System.out.println("You chose: Scissors");
-								
-		// Display opponent's choice of rock, paper, or scissors. Validate input. Display user/opponent's choice. 
-		// I unfortunately don't know how to get the opponent to generate input.
-		
-		// Display results of match. Write a separate method.
-		
-		// Prompt user to choose if they want to continue or not. Validate input.
-					}
-	}
-}
-}
-	}	
+			if (userOpChoice.equalsIgnoreCase("s")) {
+				opponent = new RockPlayer();
+				opponent.setName("The Sloppys");
+				opponentValue = opponent.generateRoshambo();
+			}
+
+			else if (userOpChoice.equalsIgnoreCase("j")) {
+				opponent = new SelectsRndm();
+				opponent.setName("The Joes");
+				opponentValue = opponent.generateRoshambo();
+			}
+
+			else {
+				System.out.println("\nInvalid input. Please pick an opponent: The Sloppys or The Joes (s/j)");
+				sc.nextLine();
+			}
+			userValue = user.generateRoshambo();
+
+			System.out.println();
+			System.out.println(opponent.getName() + " chose: " + opponentValue);
+			System.out.println();
+
+			if (userValue == Roshambo.ROCK) {
+				switch (opponentValue) {
+				case ROCK:
+					System.out.println("It's a tie!");
+					break;
+				case PAPER:
+					System.out.println("You lose!");
+					break;
+				case SCISSORS:
+					System.out.println("You win!");
+					break;
+				}}
+				if (userValue == Roshambo.PAPER) {
+					switch (opponentValue) {
+					case ROCK:
+						System.out.println("You win!");
+						break;
+					case PAPER:
+						System.out.println("It's a tie!");
+						break;
+					case SCISSORS:
+						System.out.println("You lose!");
+						break;
+
+					}}
+					if (userValue == Roshambo.SCISSORS) {
+						switch (opponentValue) {
+						case ROCK:
+							System.out.println("You lose!");
+							break;
+						case PAPER:
+							System.out.println("You win!");
+							break;
+						case SCISSORS:
+							System.out.println("It's a tie!");
+							break;
+						}}
+					System.out.println();
+						System.out.println("Do you want to continue? y/n");
+						if (sc.nextLine().equalsIgnoreCase("y")) {
+							contin = true;
+						}
+
+						else {
+							contin = false;
+						System.out.println("Thanks for playing!");
+					}}
+				}
+			}

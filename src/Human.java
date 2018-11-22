@@ -6,7 +6,8 @@ private Scanner sc;
 	@Override
 	public Roshambo generateRoshambo() {
 		sc = new Scanner(System.in);
-		String userInput = Validator.getString (sc,  "Rock paper, or scissors? (R/P/S)");
+		System.out.println();
+		String userInput = Validator.getString (sc,  "Rock, paper, or scissors? (R/P/S)\n");
 		if (userInput.equalsIgnoreCase("R")) {
 			return Roshambo.ROCK;
 			} else if (userInput.equalsIgnoreCase("P")) {
@@ -14,7 +15,7 @@ private Scanner sc;
 			} else if (userInput.equalsIgnoreCase("S")) {
 				return Roshambo.SCISSORS;
 			} else {
-		return null;
+		return generateRoshambo();
 	}
 }
 }
